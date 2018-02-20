@@ -111,7 +111,7 @@ Pliki nagłówkowe rozszerzenia Big Requests.
 Summary:	Composite extension headers
 Summary(pl.UTF-8):	Pliki nagłówkowe rozszerzenia Composite
 Version:	%{composite_ver}
-Requires:	xorg-proto-fixesproto-devel = %{x_ver}-%{release}
+Requires:	xorg-proto-fixesproto-devel = %{fixes_ver}-%{release}
 Obsoletes:	compositeext
 
 %description -n xorg-proto-compositeproto-devel
@@ -125,7 +125,7 @@ Summary:	Damage extension headers
 Summary(pl.UTF-8):	Pliki nagłówkowe rozszerzenia Damage
 Version:	%{damage_ver}
 Group:		X11/Development/Libraries
-Requires:	xorg-proto-fixesproto-devel = %{damage_ver}-%{release}
+Requires:	xorg-proto-fixesproto-devel = %{fixes_ver}-%{release}
 Obsoletes:	damageext
 
 %description -n xorg-proto-damageproto-devel
