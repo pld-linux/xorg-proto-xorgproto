@@ -1,3 +1,7 @@
+# NOTE:
+# when updating spec, adjust particular proto versions
+# and bump release (unless all versions are increased)
+
 # whole package version
 %define	ver		2018.2
 # subpackage versions (see .pc files) # last standalone spec EVR as comment
@@ -47,12 +51,16 @@ Summary:	Header files of X Window System Unified Protocol
 Summary(pl.UTF-8):	Pliki nagłówkowe zunifikowanego protokołu systemu X Window
 Name:		xorg-proto-xorgproto
 Version:	2018.2
-# bump release on updates unless all subpackage versions are increased!
+# bump release on updates unless ALL subpackage versions are increased!
 Release:	4
 License:	MIT
 Group:		X11/Development/Libraries
 Source0:	https://xorg.freedesktop.org/releases/individual/proto/xorgproto-%{ver}.tar.bz2
 # Source0-md5:	490677ddbc649b177eda7ddb8d3e2074
+# from git://anongit.freedesktop.org/xorg/proto/xorgproto, missing man/ and include/X11/extensions/ files
+# TODO: specs/ dir, but there are no build rules for processing XML
+Patch0:		xorgproto-missing.patch
+Patch1:		xorgproto-make.patch
 URL:		https://xorg.freedesktop.org/
 BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake
@@ -436,6 +444,20 @@ Pliki nagłówkowe rozszerzenia WindowsWM udostępniają definicję
 rozszerzenia WindowsWM do protokołu X11, służącego do współpracy
 między serwerem X11 a natywnym zarządcą okien Microsoft Windows.
 
+%package -n xorg-proto-xcalibrateproto-devel
+Summary:	XCalibrate extension headers
+Summary(pl.UTF-8):	Pliki nagłówkowe rozszerzenia XCalibrate
+Version:	%{xcalibrate_ver}
+Group:		X11/Development/Libraries
+# just for dirs
+Requires:	xorg-proto-xproto-devel = %{x_ver}-%{release}
+
+%description -n xorg-proto-xcalibrateproto-devel
+XCalibrate extension headers.
+
+%description -n xorg-proto-xcalibrateproto-devel -l pl.UTF-8
+Pliki nagłówkowe rozszerzenia XCalibrate.
+
 %package -n xorg-proto-xcmiscproto-devel
 Summary:	XCMisc extension headers
 Summary(pl.UTF-8):	Pliki nagłówkowe rozszerzenia XCMisc
@@ -525,6 +547,7 @@ Pliki nagłówkowe rozszerzenia XF86DGA.
 %package -n xorg-proto-xf86driproto-devel
 Summary:	XF86DRI extension headers
 Summary(pl.UTF-8):	Pliki nagłówkowe rozszerzenia XF86DRI
+Version:	%{xf86dri_ver}
 Group:		X11/Development/Libraries
 Requires:	libdrm-devel
 Requires:	xorg-proto-xproto-devel = %{x_ver}-%{release}
@@ -643,6 +666,8 @@ usługi proxy.
 
 %prep
 %setup -q -n xorgproto-%{ver}
+%patch0 -p1
+%patch1 -p1
 
 %build
 %{__aclocal}
@@ -654,7 +679,6 @@ usługi proxy.
 	--build=%{_host} \
 %endif
 	%{?with_legacy:--enable-legacy} \
-	--disable-specs \
 	--without-fop
 
 %{__make}
@@ -670,6 +694,9 @@ rm -rf $RPM_BUILD_ROOT
 %{__rm} $RPM_BUILD_ROOT%{_npkgconfigdir}/{applewmproto,windowswmproto}.pc
 %endif
 
+# packaged as %doc
+%{__rm} -r $RPM_BUILD_ROOT%{_docdir}/xorgproto
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -684,6 +711,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n xorg-proto-bigreqsproto-devel
 %defattr(644,root,root,755)
 %doc COPYING-bigreqsproto
+# specs/bigreq.html
 %{_includedir}/X11/extensions/bigreqs*.h
 %{_npkgconfigdir}/bigreqsproto.pc
 
@@ -736,13 +764,14 @@ rm -rf $RPM_BUILD_ROOT
 %files -n xorg-proto-fontcacheproto-devel
 %defattr(644,root,root,755)
 %doc COPYING-fontcacheproto
-%{_includedir}/X11/extensions/fontcache*.h
+%{_includedir}/X11/extensions/fontcach*.h
 %{_npkgconfigdir}/fontcacheproto.pc
 %endif
 
 %files -n xorg-proto-fontsproto-devel
 %defattr(644,root,root,755)
 %doc COPYING-fontsproto
+# specs/fsproto.html
 %dir %{_includedir}/X11/fonts
 %{_includedir}/X11/fonts/FS.h
 %{_includedir}/X11/fonts/FSproto.h
@@ -766,6 +795,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n xorg-proto-inputproto-devel
 %defattr(644,root,root,755)
 %doc COPYING-inputproto
+# specs/{XIproto.txt,XI2proto.txt}
 %{_includedir}/X11/extensions/XI.h
 %{_includedir}/X11/extensions/XIproto.h
 %{_includedir}/X11/extensions/XI2.h
@@ -775,6 +805,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n xorg-proto-kbproto-devel
 %defattr(644,root,root,755)
 %doc COPYING-kbproto
+# specs/{XKBproto-*.svg,xkbproto.html}
 %{_includedir}/X11/extensions/XKB.h
 %{_includedir}/X11/extensions/XKBgeom.h
 %{_includedir}/X11/extensions/XKBproto.h
@@ -802,6 +833,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc COPYING-printproto
 %{_includedir}/X11/extensions/Print*.h
 %{_npkgconfigdir}/printproto.pc
+%{_mandir}/man7/Xprint.7*
 %endif
 
 %files -n xorg-proto-randrproto-devel
@@ -813,6 +845,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n xorg-proto-recordproto-devel
 %defattr(644,root,root,755)
 %doc COPYING-recordproto
+# specs/record.html
 %{_includedir}/X11/extensions/record*.h
 %{_npkgconfigdir}/recordproto.pc
 
@@ -831,6 +864,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n xorg-proto-scrnsaverproto-devel
 %defattr(644,root,root,755)
 %doc COPYING-scrnsaverproto
+# specs/saver.html
 %{_includedir}/X11/extensions/saver*.h
 %{_npkgconfigdir}/scrnsaverproto.pc
 
@@ -858,15 +892,24 @@ rm -rf $RPM_BUILD_ROOT
 %{_npkgconfigdir}/windowswmproto.pc
 %endif
 
+%if %{with legacy}
+%files -n xorg-proto-xcalibrateproto-devel
+%defattr(644,root,root,755)
+%{_includedir}/X11/extensions/xcalibrate*.h
+%{_npkgconfigdir}/xcalibrateproto.pc
+%endif
+
 %files -n xorg-proto-xcmiscproto-devel
 %defattr(644,root,root,755)
 %doc COPYING-xcmiscproto
+# specs/xc-misc.html
 %{_includedir}/X11/extensions/xcmisc*.h
 %{_npkgconfigdir}/xcmiscproto.pc
 
 %files -n xorg-proto-xextproto-devel
 %defattr(644,root,root,755)
 %doc COPYING-xextproto
+# specs/{dbe,dpms,evi,geproto,lbx,multibuf,security,shape,shm,sync,tog-cup,xtest}.html
 %{_includedir}/X11/extensions/EVI*.h
 %{_includedir}/X11/extensions/ag*.h
 %{_includedir}/X11/extensions/cup*.h
@@ -932,7 +975,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n xorg-proto-xproto-devel
 %defattr(644,root,root,755)
 %doc AUTHORS COPYING-x11proto README
-# specs/*.html specs/SIAddresses/{IPv6,hostname,localuser}.txt
+# specs/x11protocol.html specs/SIAddresses/{IPv6,hostname,localuser}.txt
 %{_includedir}/X11/DECkeysym.h
 %{_includedir}/X11/HPkeysym.h
 %{_includedir}/X11/Sunkeysym.h
