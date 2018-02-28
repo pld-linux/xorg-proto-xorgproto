@@ -3,7 +3,7 @@
 # and bump release (unless all versions are increased)
 
 # whole package version
-%define	ver		2018.2
+%define	ver		2018.3
 # subpackage versions (see .pc files) # last standalone spec EVR as comment
 %define	applewm_ver	1.4.2		# 1.2.0-1
 %define	bigreqs_ver	1.1.2		# 1.1.2-2
@@ -22,7 +22,7 @@
 %define	lg3d_ver	5.0		# (none)
 %define	present_ver	1.1		# 1.1-1
 %define	print_ver	1.0.5		# 1.0.5-2
-%define	randr_ver	1.5.0		# 1.5.0-1
+%define	randr_ver	1.6.0		# 1.5.0-1
 %define	record_ver	1.14.2		# 1.14.2-2
 %define	render_ver	0.11.1		# 0.11.1-2
 %define	resource_ver	1.2.0		# 1.2.0-2
@@ -50,17 +50,16 @@
 Summary:	Header files of X Window System Unified Protocol
 Summary(pl.UTF-8):	Pliki nagłówkowe zunifikowanego protokołu systemu X Window
 Name:		xorg-proto-xorgproto
-Version:	2018.2
+Version:	%{ver}
 # bump release on updates unless ALL subpackage versions are increased!
-Release:	4
+Release:	5
 License:	MIT
 Group:		X11/Development/Libraries
 Source0:	https://xorg.freedesktop.org/releases/individual/proto/xorgproto-%{ver}.tar.bz2
-# Source0-md5:	490677ddbc649b177eda7ddb8d3e2074
-# from git://anongit.freedesktop.org/xorg/proto/xorgproto, missing man/ and include/X11/extensions/ files
+# Source0-md5:	102f1c9f1dc43b713539018af067ae6c
+# from git://anongit.freedesktop.org/xorg/proto/xorgproto, missing man/ files
 # TODO: specs/ dir, but there are no build rules for processing XML
 Patch0:		xorgproto-missing.patch
-Patch1:		xorgproto-make.patch
 URL:		https://xorg.freedesktop.org/
 BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake
@@ -667,7 +666,6 @@ usługi proxy.
 %prep
 %setup -q -n xorgproto-%{ver}
 %patch0 -p1
-%patch1 -p1
 
 %build
 %{__aclocal}
