@@ -3,7 +3,7 @@
 # and bump release (unless all versions are increased)
 
 # whole package version
-%define	ver		2018.3
+%define	ver		2018.4
 # subpackage versions (see .pc files) # last standalone spec EVR as comment
 %define	applewm_ver	1.4.2		# 1.2.0-1
 %define	bigreqs_ver	1.1.2		# 1.1.2-2
@@ -11,7 +11,7 @@
 %define	damage_ver	1.2.1		# 1.2.1-2
 %define	dmx_ver		2.3.1		# 2.3.1-2
 %define	dri2_ver	2.8		# 2.8-2
-%define	dri3_ver	1.0		# 1.0-2
+%define	dri3_ver	1.2		# 1.0-2
 %define	evie_ver	1.1.1		# evieext-1.1.1-2
 %define	fixes_ver	5.0		# 5.0-2
 %define	fontcache_ver	0.1.3		# 0.1.3-2
@@ -20,7 +20,7 @@
 %define	input_ver	2.3.2		# 2.3.2-1
 %define	kb_ver		1.0.7		# 1.0.7-1
 %define	lg3d_ver	5.0		# (none)
-%define	present_ver	1.1		# 1.1-1
+%define	present_ver	1.2		# 1.1-1
 %define	print_ver	1.0.5		# 1.0.5-2
 %define	randr_ver	1.6.0		# 1.5.0-1
 %define	record_ver	1.14.2		# 1.14.2-2
@@ -52,11 +52,11 @@ Summary(pl.UTF-8):	Pliki nagłówkowe zunifikowanego protokołu systemu X Window
 Name:		xorg-proto-xorgproto
 Version:	%{ver}
 # bump release on updates unless ALL subpackage versions are increased!
-Release:	5
+Release:	6
 License:	MIT
 Group:		X11/Development/Libraries
 Source0:	https://xorg.freedesktop.org/releases/individual/proto/xorgproto-%{ver}.tar.bz2
-# Source0-md5:	102f1c9f1dc43b713539018af067ae6c
+# Source0-md5:	81557ca47ee66a4e54590fcdadd28114
 # from git://anongit.freedesktop.org/xorg/proto/xorgproto, missing man/ files
 # TODO: specs/ dir, but there are no build rules for processing XML
 Patch0:		xorgproto-missing.patch
