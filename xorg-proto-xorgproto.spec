@@ -1,9 +1,9 @@
-# NOTE:
-# when updating spec, adjust particular proto versions
-# and bump release (unless all versions are increased)
+# NOTE: when updating spec, adjust particular proto versions!
 
 # whole package version
 %define	ver		2018.4
+# package release
+%define	rel		1
 # subpackage versions (see .pc files) # last standalone spec EVR as comment
 %define	applewm_ver	1.4.2		# 1.2.0-1
 %define	bigreqs_ver	1.1.2		# 1.1.2-2
@@ -51,8 +51,7 @@ Summary:	Header files of X Window System Unified Protocol
 Summary(pl.UTF-8):	Pliki nagłówkowe zunifikowanego protokołu systemu X Window
 Name:		xorg-proto-xorgproto
 Version:	%{ver}
-# bump release on updates unless ALL subpackage versions are increased!
-Release:	6
+Release:	%{ver}.%{rel}
 License:	MIT
 Group:		X11/Development/Libraries
 Source0:	https://xorg.freedesktop.org/releases/individual/proto/xorgproto-%{ver}.tar.bz2
