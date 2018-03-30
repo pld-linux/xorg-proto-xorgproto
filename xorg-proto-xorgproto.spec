@@ -3,7 +3,7 @@
 # whole package version
 %define	ver		2018.4
 # package release
-%define	rel		1
+%define	rel		2
 # subpackage versions (see .pc files) # last standalone spec EVR as comment
 %define	applewm_ver	1.4.2		# 1.2.0-1
 %define	bigreqs_ver	1.1.2		# 1.1.2-2
@@ -44,7 +44,7 @@
 %define	xproxymng_ver	1.0.3		# xproxymanagementprotocol-1.0.3-3
 
 # Conditional build:
-%bcond_with	foreign		# foreign OS protocols (applewm, windowswm)
+%bcond_without	foreign		# foreign OS protocols (applewm, windowswm)
 %bcond_without	legacy		# legacy protocols (XCalibrate, evie, fontcache, lg3d, print, xf86rush)
 
 Summary:	Header files of X Window System Unified Protocol
