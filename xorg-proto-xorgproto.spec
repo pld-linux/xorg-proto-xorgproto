@@ -1,9 +1,9 @@
 # NOTE: when updating spec, adjust particular proto versions!
 
 # whole package version
-%define	ver		2018.4
+%define	ver		2019.1
 # package release
-%define	rel		2
+%define	rel		1
 # subpackage versions (see .pc files) # last standalone spec EVR as comment
 %define	applewm_ver	1.4.2		# 1.2.0-1
 %define	bigreqs_ver	1.1.2		# 1.1.2-2
@@ -26,7 +26,7 @@
 %define	record_ver	1.14.2		# 1.14.2-2
 %define	render_ver	0.11.1		# 0.11.1-2
 %define	resource_ver	1.2.0		# 1.2.0-2
-%define	scrnsaver_ver	1.2.2		# 1.2.2-2
+%define	scrnsaver_ver	1.2.3		# 1.2.2-2
 %define	trap_ver	3.4.3		# 3.4.3-3
 %define	video_ver	2.3.3		# 2.3.3-1
 %define	windowswm_ver	1.0.4		# 1.0.4-2
@@ -55,14 +55,12 @@ Release:	%{ver}.%{rel}
 License:	MIT
 Group:		X11/Development/Libraries
 Source0:	https://xorg.freedesktop.org/releases/individual/proto/xorgproto-%{ver}.tar.bz2
-# Source0-md5:	81557ca47ee66a4e54590fcdadd28114
-# from git://anongit.freedesktop.org/xorg/proto/xorgproto, missing man/ files
-# TODO: specs/ dir, but there are no build rules for processing XML
-Patch0:		xorgproto-missing.patch
+# Source0-md5:	802ccb9e977ba3cf94ba798ddb2898a4
 URL:		https://xorg.freedesktop.org/
 BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake
 BuildRequires:	docbook-dtd43-xml
+BuildRequires:	libxslt-progs
 BuildRequires:	xmlto >= 0.0.22
 BuildRequires:	xorg-sgml-doctools >= 1.8
 BuildRequires:	xorg-util-util-macros >= 1.12
@@ -664,7 +662,6 @@ usługi proxy.
 
 %prep
 %setup -q -n xorgproto-%{ver}
-%patch0 -p1
 
 %build
 %{__aclocal}
@@ -692,7 +689,7 @@ rm -rf $RPM_BUILD_ROOT
 %endif
 
 # packaged as %doc
-%{__rm} -r $RPM_BUILD_ROOT%{_docdir}/xorgproto
+%{__rm} -r $RPM_BUILD_ROOT%{_docdir}/{bigreqsproto,fontsproto,kbproto,recordproto,scrnsaverproto,xcmiscproto,xextproto,xorgproto,xproto}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -707,8 +704,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n xorg-proto-bigreqsproto-devel
 %defattr(644,root,root,755)
-%doc COPYING-bigreqsproto
-# specs/bigreq.html
+%doc COPYING-bigreqsproto specs/bigreqsproto/bigreq.html
 %{_includedir}/X11/extensions/bigreqs*.h
 %{_npkgconfigdir}/bigreqsproto.pc
 
@@ -767,8 +763,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n xorg-proto-fontsproto-devel
 %defattr(644,root,root,755)
-%doc COPYING-fontsproto
-# specs/fsproto.html
+%doc COPYING-fontsproto specs/fontsproto/fsproto.html
 %dir %{_includedir}/X11/fonts
 %{_includedir}/X11/fonts/FS.h
 %{_includedir}/X11/fonts/FSproto.h
@@ -801,8 +796,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n xorg-proto-kbproto-devel
 %defattr(644,root,root,755)
-%doc COPYING-kbproto
-# specs/{XKBproto-*.svg,xkbproto.html}
+%doc COPYING-kbproto specs/kbproto/{XKBproto-*.svg,xkbproto.html}
 %{_includedir}/X11/extensions/XKB.h
 %{_includedir}/X11/extensions/XKBgeom.h
 %{_includedir}/X11/extensions/XKBproto.h
@@ -827,7 +821,7 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with legacy}
 %files -n xorg-proto-printproto-devel
 %defattr(644,root,root,755)
-%doc COPYING-printproto
+%doc COPYING-printproto specs/printproto/xp_proto.ps
 %{_includedir}/X11/extensions/Print*.h
 %{_npkgconfigdir}/printproto.pc
 %{_mandir}/man7/Xprint.7*
@@ -841,8 +835,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n xorg-proto-recordproto-devel
 %defattr(644,root,root,755)
-%doc COPYING-recordproto
-# specs/record.html
+%doc COPYING-recordproto specs/recordproto/record.html
 %{_includedir}/X11/extensions/record*.h
 %{_npkgconfigdir}/recordproto.pc
 
@@ -860,8 +853,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n xorg-proto-scrnsaverproto-devel
 %defattr(644,root,root,755)
-%doc COPYING-scrnsaverproto
-# specs/saver.html
+%doc COPYING-scrnsaverproto specs/scrnsaverproto/saver.html
 %{_includedir}/X11/extensions/saver*.h
 %{_npkgconfigdir}/scrnsaverproto.pc
 
@@ -898,15 +890,13 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n xorg-proto-xcmiscproto-devel
 %defattr(644,root,root,755)
-%doc COPYING-xcmiscproto
-# specs/xc-misc.html
+%doc COPYING-xcmiscproto specs/xcmiscproto/xc-misc.html
 %{_includedir}/X11/extensions/xcmisc*.h
 %{_npkgconfigdir}/xcmiscproto.pc
 
 %files -n xorg-proto-xextproto-devel
 %defattr(644,root,root,755)
-%doc COPYING-xextproto
-# specs/{dbe,dpms,evi,geproto,lbx,multibuf,security,shape,shm,sync,tog-cup,xtest}.html
+%doc COPYING-xextproto specs/xextproto/{appgrp,dbe,dpms,evi,geproto,lbx,multibuf,security,shape,shm,sync,tog-cup,xtest}.html
 %{_includedir}/X11/extensions/EVI*.h
 %{_includedir}/X11/extensions/ag*.h
 %{_includedir}/X11/extensions/cup*.h
@@ -971,8 +961,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n xorg-proto-xproto-devel
 %defattr(644,root,root,755)
-%doc AUTHORS COPYING-x11proto README
-# specs/x11protocol.html specs/SIAddresses/{IPv6,hostname,localuser}.txt
+%doc AUTHORS COPYING-x11proto README.md specs/SIAddresses/{IPv6,hostname,localuser}.txt specs/xproto/x11protocol.html
 %{_includedir}/X11/DECkeysym.h
 %{_includedir}/X11/HPkeysym.h
 %{_includedir}/X11/Sunkeysym.h
