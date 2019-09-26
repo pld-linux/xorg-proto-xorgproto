@@ -3,7 +3,7 @@
 # whole package version
 %define	ver		2019.1
 # package release
-%define	rel		1
+%define	rel		2
 # subpackage versions (see .pc files) # last standalone spec EVR as comment
 %define	applewm_ver	1.4.2		# 1.2.0-1
 %define	bigreqs_ver	1.1.2		# 1.1.2-2
@@ -683,6 +683,9 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+# moved to libXvMC >= 1.0.12
+%{__rm} $RPM_BUILD_ROOT%{_includedir}/X11/extensions/vldXvMC.h
+
 %if %{without foreign}
 %{__rm} $RPM_BUILD_ROOT%{_includedir}/X11/extensions/{applewm,windowswm}*.h
 %{__rm} $RPM_BUILD_ROOT%{_npkgconfigdir}/{applewmproto,windowswmproto}.pc
@@ -870,7 +873,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/X11/extensions/Xvproto.h
 %{_includedir}/X11/extensions/XvMC.h
 %{_includedir}/X11/extensions/XvMCproto.h
-%{_includedir}/X11/extensions/vldXvMC.h
 %{_npkgconfigdir}/videoproto.pc
 
 %if %{with foreign}
