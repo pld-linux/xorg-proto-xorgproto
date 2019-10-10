@@ -3,7 +3,7 @@
 # whole package version
 %define	ver		2019.1
 # package release
-%define	rel		2
+%define	rel		3
 # subpackage versions (see .pc files) # last standalone spec EVR as comment
 %define	applewm_ver	1.4.2		# 1.2.0-1
 %define	bigreqs_ver	1.1.2		# 1.1.2-2
@@ -683,6 +683,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+# moved to libX11 >= 1.6.9
+%{__rm} $RPM_BUILD_ROOT%{_includedir}/X11/extensions/XKBgeom.h
 # moved to libXvMC >= 1.0.12
 %{__rm} $RPM_BUILD_ROOT%{_includedir}/X11/extensions/vldXvMC.h
 
@@ -801,7 +803,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc COPYING-kbproto specs/kbproto/{XKBproto-*.svg,xkbproto.html}
 %{_includedir}/X11/extensions/XKB.h
-%{_includedir}/X11/extensions/XKBgeom.h
 %{_includedir}/X11/extensions/XKBproto.h
 %{_includedir}/X11/extensions/XKBsrv.h
 %{_includedir}/X11/extensions/XKBstr.h
