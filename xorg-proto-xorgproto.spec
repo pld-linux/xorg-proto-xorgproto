@@ -1,7 +1,7 @@
 # NOTE: when updating spec, adjust particular proto versions!
 
 # whole package version
-%define	ver		2019.2
+%define	ver		2020.1
 # package release
 %define	rel		1
 # subpackage versions (see .pc files) # last standalone spec EVR as comment
@@ -10,6 +10,7 @@
 %define	composite_ver	0.4.2		# 0.4.2-2
 %define	damage_ver	1.2.1		# 1.2.1-2
 %define	dmx_ver		2.3.1		# 2.3.1-2
+%define	dpms_ver	1.2		# (1.1, but part of xext 1:7.3.0-2)
 %define	dri2_ver	2.8		# 2.8-2
 %define	dri3_ver	1.2		# 1.0-2
 %define	evie_ver	1.1.1		# evieext-1.1.1-2
@@ -45,7 +46,7 @@
 
 # Conditional build:
 %bcond_without	foreign		# foreign OS protocols (applewm, windowswm)
-%bcond_without	legacy		# legacy protocols (XCalibrate, evie, fontcache, lg3d, print, xf86rush)
+%bcond_without	legacy		# legacy protocols (XCalibrate, evie, fontcache, lg3d, print, trap, xf86misc, xf86rush, xproxymng)
 
 Summary:	Header files of X Window System Unified Protocol
 Summary(pl.UTF-8):	Pliki nagłówkowe zunifikowanego protokołu systemu X Window
@@ -55,7 +56,7 @@ Release:	%{ver}.%{rel}
 License:	MIT
 Group:		X11/Development/Libraries
 Source0:	https://xorg.freedesktop.org/releases/individual/proto/xorgproto-%{ver}.tar.bz2
-# Source0-md5:	a02dcaff48b4141b949ac99dfc344d86
+# Source0-md5:	c29f4fa78f53b52b3efdc71ebd9506b6
 URL:		https://xorg.freedesktop.org/
 BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake
@@ -475,6 +476,7 @@ Version:	%{xext_ver}
 Epoch:		1
 Group:		X11/Development/Libraries
 Requires:	xorg-proto-xproto-devel = %{x_ver}-%{release}
+Provides:	xorg-proto-dpmsproto-devel = %{dpms_ver}-%{release}
 Suggests:	xorg-lib-libXext-devel >= 1:1.1
 Obsoletes:	xextensions
 
@@ -863,11 +865,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/X11/extensions/saver*.h
 %{_npkgconfigdir}/scrnsaverproto.pc
 
+%if %{with legacy}
 %files -n xorg-proto-trapproto-devel
 %defattr(644,root,root,755)
 %doc COPYING-trapproto
 %{_includedir}/X11/extensions/xtrap*.h
 %{_npkgconfigdir}/trapproto.pc
+%endif
 
 %files -n xorg-proto-videoproto-devel
 %defattr(644,root,root,755)
@@ -916,6 +920,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/X11/extensions/shm*.h
 %{_includedir}/X11/extensions/sync*.h
 %{_includedir}/X11/extensions/xtest*.h
+%{_npkgconfigdir}/dpmsproto.pc
 %{_npkgconfigdir}/xextproto.pc
 
 %files -n xorg-proto-xf86bigfontproto-devel
@@ -937,6 +942,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/X11/dri/xf86dri*.h
 %{_npkgconfigdir}/xf86driproto.pc
 
+%if %{with legacy}
 %files -n xorg-proto-xf86miscproto-devel
 %defattr(644,root,root,755)
 %doc COPYING-xf86miscproto
@@ -944,7 +950,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/X11/extensions/xf86misc.h
 %{_npkgconfigdir}/xf86miscproto.pc
 
-%if %{with legacy}
 %files -n xorg-proto-xf86rushproto-devel
 %defattr(644,root,root,755)
 %doc COPYING-xf86rushproto
@@ -966,7 +971,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n xorg-proto-xproto-devel
 %defattr(644,root,root,755)
-%doc AUTHORS COPYING-x11proto README.md specs/SIAddresses/{IPv6,hostname,localuser}.txt specs/xproto/x11protocol.html
+%doc AUTHORS COPYING-x11proto README.md specs/SIAddresses/{IPv6,hostname,localuser}.md specs/xproto/x11protocol.html
 %{_includedir}/X11/DECkeysym.h
 %{_includedir}/X11/HPkeysym.h
 %{_includedir}/X11/Sunkeysym.h
@@ -996,9 +1001,11 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_includedir}/X11/extensions
 %{_npkgconfigdir}/xproto.pc
 
+%if %{with legacy}
 %files -n xorg-proto-xproxymngproto-devel
 %defattr(644,root,root,755)
 %doc COPYING-pmproto PM_spec
 %dir %{_includedir}/X11/PM
 %{_includedir}/X11/PM/PM*.h
 %{_npkgconfigdir}/xproxymngproto.pc
+%endif
