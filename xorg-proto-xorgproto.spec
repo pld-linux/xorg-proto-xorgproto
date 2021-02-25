@@ -1,7 +1,7 @@
 # NOTE: when updating spec, adjust particular proto versions!
 
 # whole package version
-%define	ver		2020.1
+%define	ver		2021.3
 # package release
 %define	rel		1
 # subpackage versions (see .pc files) # last standalone spec EVR as comment
@@ -41,7 +41,7 @@
 %define	xf86rush_ver	1.1.2		# 1.1.2-3
 %define	xf86vidmode_ver	2.3.1		# 2.3.1-2
 %define	xinerama_ver	1.2.1		# 1.2.1-2
-%define	x_ver		7.0.32		# 7.0.31-1
+%define	x_ver		7.0.33		# 7.0.31-1
 %define	xproxymng_ver	1.0.3		# xproxymanagementprotocol-1.0.3-3
 
 # Conditional build:
@@ -56,7 +56,7 @@ Release:	%{ver}.%{rel}
 License:	MIT
 Group:		X11/Development/Libraries
 Source0:	https://xorg.freedesktop.org/releases/individual/proto/xorgproto-%{ver}.tar.bz2
-# Source0-md5:	c29f4fa78f53b52b3efdc71ebd9506b6
+# Source0-md5:	c201769f50d3d0962b206130326ad23d
 URL:		https://xorg.freedesktop.org/
 BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake
