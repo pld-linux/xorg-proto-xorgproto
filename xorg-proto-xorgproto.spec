@@ -3,7 +3,7 @@
 # whole package version
 %define	ver		2021.4
 # package release
-%define	rel		1
+%define	rel		2
 # subpackage versions (see .pc files) # last standalone spec EVR as comment
 %define	applewm_ver	1.4.2		# 1.2.0-1
 %define	bigreqs_ver	1.1.2		# 1.1.2-2
@@ -14,7 +14,7 @@
 %define	dri2_ver	2.8		# 2.8-2
 %define	dri3_ver	1.2		# 1.0-2
 %define	evie_ver	1.1.1		# evieext-1.1.1-2
-%define	fixes_ver	5.0		# 5.0-2
+%define	fixes_ver	6.0		# 5.0-2
 %define	fontcache_ver	0.1.3		# 0.1.3-2
 %define	fonts_ver	2.1.3		# 2.1.3-2
 %define	gl_ver		1.4.17		# 1.4.17-2
