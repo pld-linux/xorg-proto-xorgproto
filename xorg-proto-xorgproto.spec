@@ -4,45 +4,45 @@
 %define	ver		2021.4
 # package release
 %define	rel		2
-# subpackage versions (see .pc files) # last standalone spec EVR as comment
-%define	applewm_ver	1.4.2		# 1.2.0-1
-%define	bigreqs_ver	1.1.2		# 1.1.2-2
-%define	composite_ver	0.4.2		# 0.4.2-2
-%define	damage_ver	1.2.1		# 1.2.1-2
-%define	dmx_ver		2.3.1		# 2.3.1-2
-%define	dpms_ver	1.2		# (1.1, but part of xext 1:7.3.0-2)
-%define	dri2_ver	2.8		# 2.8-2
-%define	dri3_ver	1.2		# 1.0-2
-%define	evie_ver	1.1.1		# evieext-1.1.1-2
-%define	fixes_ver	6.0		# 5.0-2
-%define	fontcache_ver	0.1.3		# 0.1.3-2
-%define	fonts_ver	2.1.3		# 2.1.3-2
-%define	gl_ver		1.4.17		# 1.4.17-2
-%define	input_ver	2.3.2		# 2.3.2-1
-%define	kb_ver		1.0.7		# 1.0.7-1
-%define	lg3d_ver	5.0		# (none)
-%define	present_ver	1.2		# 1.1-1
-%define	print_ver	1.0.5		# 1.0.5-2
-%define	randr_ver	1.6.0		# 1.5.0-1
-%define	record_ver	1.14.2		# 1.14.2-2
-%define	render_ver	0.11.1		# 0.11.1-2
-%define	resource_ver	1.2.0		# 1.2.0-2
-%define	scrnsaver_ver	1.2.3		# 1.2.2-2
-%define	trap_ver	3.4.3		# 3.4.3-3
-%define	video_ver	2.3.3		# 2.3.3-1
-%define	windowswm_ver	1.0.4		# 1.0.4-2
-%define	xcalibrate_ver	0.1.0		# (none)
-%define	xcmisc_ver	1.2.2		# 1.2.2-2
-%define	xext_ver	7.3.0		# 1:7.3.0-2
-%define	xf86bigfont_ver	1.2.0		# 1.2.0-2
-%define	xf86dga_ver	2.1		# 2.1-3
-%define	xf86dri_ver	2.1.1		# 2.1.1-2
-%define	xf86misc_ver	0.9.3		# 0.9.3-2
-%define	xf86rush_ver	1.1.2		# 1.1.2-3
-%define	xf86vidmode_ver	2.3.1		# 2.3.1-2
-%define	xinerama_ver	1.2.1		# 1.2.1-2
-%define	x_ver		7.0.33		# 7.0.31-1
-%define	xproxymng_ver	1.0.3		# xproxymanagementprotocol-1.0.3-3
+# subpackage versions (see .pc files)
+%define	applewm_ver	1.4.2
+%define	bigreqs_ver	1.1.2
+%define	composite_ver	0.4.2
+%define	damage_ver	1.2.1
+%define	dmx_ver		2.3.1
+%define	dpms_ver	1.2
+%define	dri2_ver	2.8
+%define	dri3_ver	1.2
+%define	evie_ver	1.1.1
+%define	fixes_ver	6.0
+%define	fontcache_ver	0.1.3
+%define	fonts_ver	2.1.3
+%define	gl_ver		1.4.17
+%define	input_ver	2.3.2
+%define	kb_ver		1.0.7
+%define	lg3d_ver	5.0
+%define	present_ver	1.2
+%define	print_ver	1.0.5
+%define	randr_ver	1.6.0
+%define	record_ver	1.14.2
+%define	render_ver	0.11.1
+%define	resource_ver	1.2.0
+%define	scrnsaver_ver	1.2.3
+%define	trap_ver	3.4.3
+%define	video_ver	2.3.3
+%define	windowswm_ver	1.0.4
+%define	xcalibrate_ver	0.1.0
+%define	xcmisc_ver	1.2.2
+%define	xext_ver	7.3.0
+%define	xf86bigfont_ver	1.2.0
+%define	xf86dga_ver	2.1
+%define	xf86dri_ver	2.1.1
+%define	xf86misc_ver	0.9.3
+%define	xf86rush_ver	1.1.2
+%define	xf86vidmode_ver	2.3.1
+%define	xinerama_ver	1.2.1
+%define	x_ver		7.0.33
+%define	xproxymng_ver	1.0.3
 
 # Conditional build:
 %bcond_without	foreign		# foreign OS protocols (applewm, windowswm)
