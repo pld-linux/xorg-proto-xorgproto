@@ -109,7 +109,7 @@ Summary:	Composite extension headers
 Summary(pl.UTF-8):	Pliki nagłówkowe rozszerzenia Composite
 Version:	%{composite_ver}
 Requires:	xorg-proto-fixesproto-devel = %{fixes_ver}-%{release}
-Obsoletes:	compositeext
+Obsoletes:	compositeext < 2.1
 
 %description -n xorg-proto-compositeproto-devel
 Composite extension headers.
@@ -123,7 +123,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe rozszerzenia Damage
 Version:	%{damage_ver}
 Group:		X11/Development/Libraries
 Requires:	xorg-proto-fixesproto-devel = %{fixes_ver}-%{release}
-Obsoletes:	damageext
+Obsoletes:	damageext < 1.1
 
 %description -n xorg-proto-damageproto-devel
 Damage extension headers.
@@ -201,7 +201,7 @@ Version:	%{fixes_ver}
 Group:		X11/Development/Libraries
 Requires:	xorg-proto-xextproto-devel = 1:%{xext_ver}-%{release}
 Requires:	xorg-proto-xproto-devel = %{x_ver}-%{release}
-Obsoletes:	fixesext
+Obsoletes:	fixesext < 3.0
 
 %description -n xorg-proto-fixesproto-devel
 Header files and documentation for the XFIXES extension.
@@ -323,7 +323,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe rozrzerzenia RandR
 Version:	%{randr_ver}
 Group:		X11/Development/Libraries
 Requires:	xorg-proto-xproto-devel = %{x_ver}-%{release}
-Obsoletes:	randrext
+Obsoletes:	randrext < 1.1
 
 %description -n xorg-proto-randrproto-devel
 RandR extension headers.
@@ -347,7 +347,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe rozszerzenia Record
 Version:	%{record_ver}
 Group:		X11/Development/Libraries
 Requires:	xorg-proto-xproto-devel = %{x_ver}-%{release}
-Obsoletes:	recordext
+Obsoletes:	recordext < 1.0
 
 %description -n xorg-proto-recordproto-devel
 Record extension headers.
@@ -361,8 +361,8 @@ Summary(pl.UTF-8):	Pliki nagłówkowe rozszerzenia RENDER
 Version:	%{render_ver}
 Group:		X11/Development/Libraries
 Requires:	xorg-proto-xproto-devel = %{x_ver}-%{release}
-Obsoletes:	render
-Obsoletes:	renderext
+Obsoletes:	render < 0.9
+Obsoletes:	renderext < 0.9
 
 %description -n xorg-proto-renderproto-devel
 X Rendering (RENDER) extension headers.
@@ -376,7 +376,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe rozszerzenia Resource
 Version:	%{resource_ver}
 Group:		X11/Development/Libraries
 Requires:	xorg-proto-xproto-devel = %{x_ver}-%{release}
-Obsoletes:	resourceext
+Obsoletes:	resourceext < 1.0.1
 
 %description -n xorg-proto-resourceproto-devel
 Resource extension headers.
@@ -478,7 +478,7 @@ Group:		X11/Development/Libraries
 Requires:	xorg-proto-xproto-devel = %{x_ver}-%{release}
 Provides:	xorg-proto-dpmsproto-devel = %{dpms_ver}-%{release}
 Suggests:	xorg-lib-libXext-devel >= 1:1.1
-Obsoletes:	xextensions
+Obsoletes:	xextensions < 7.0
 
 %description -n xorg-proto-xextproto-devel
 Header files for X protocol extensions, covering:
@@ -614,8 +614,8 @@ Summary(pl.UTF-8):	Pliki nagłówkowe rozszerzenia Xinerama
 Version:	%{xinerama_ver}
 Group:		X11/Development/Libraries
 Requires:	xorg-proto-xproto-devel = %{x_ver}-%{release}
-Obsoletes:	panoramixext
-Obsoletes:	xorg-proto-panoramixproto-devel
+Obsoletes:	panoramixext < 1.1.1
+Obsoletes:	xorg-proto-panoramixproto-devel < 1.1.1
 
 %description -n xorg-proto-xineramaproto-devel
 Xinerama is an X extension that allows multiple physical screens
@@ -632,7 +632,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe protokołu X i pomocnicze
 Version:	%{x_ver}
 Group:		X11/Development/Libraries
 Requires:	filesystem >= 3.0-32
-Obsoletes:	xproto
+Obsoletes:	xproto < 7.0
 
 %description -n xorg-proto-xproto-devel
 X protocol and ancillary headers.
