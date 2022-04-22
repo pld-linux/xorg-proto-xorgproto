@@ -1,7 +1,7 @@
 # NOTE: when updating spec, adjust particular proto versions!
 
 # whole package version
-%define	ver		2021.5
+%define	ver		2022.1
 # package release
 %define	rel		1
 # subpackage versions (see .pc files)
@@ -56,7 +56,7 @@ Release:	%{ver}.%{rel}
 License:	MIT
 Group:		X11/Development/Libraries
 Source0:	https://xorg.freedesktop.org/releases/individual/proto/xorgproto-%{ver}.tar.bz2
-# Source0-md5:	bff0c9a6a060ecde954e255a2d1d9a22
+# Source0-md5:	3e84dbe18270e92d42a6eb5e6d0d9a8b
 URL:		https://xorg.freedesktop.org/
 BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake
