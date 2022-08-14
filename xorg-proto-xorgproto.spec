@@ -1,7 +1,7 @@
 # NOTE: when updating spec, adjust particular proto versions!
 
 # whole package version
-%define	ver		2022.1
+%define	ver		2022.2
 # package release
 %define	rel		1
 # subpackage versions (see .pc files)
@@ -12,7 +12,7 @@
 %define	dmx_ver		2.3.1
 %define	dpms_ver	1.2
 %define	dri2_ver	2.8
-%define	dri3_ver	1.2
+%define	dri3_ver	1.3
 %define	evie_ver	1.1.1
 %define	fixes_ver	6.0
 %define	fontcache_ver	0.1.3
@@ -43,6 +43,7 @@
 %define	xinerama_ver	1.2.1
 %define	x_ver		7.0.33
 %define	xproxymng_ver	1.0.3
+%define	xwayland_ver	1.0
 
 # Conditional build:
 %bcond_without	foreign		# foreign OS protocols (applewm, windowswm)
@@ -55,17 +56,19 @@ Version:	%{ver}
 Release:	%{ver}.%{rel}
 License:	MIT
 Group:		X11/Development/Libraries
-Source0:	https://xorg.freedesktop.org/releases/individual/proto/xorgproto-%{ver}.tar.bz2
-# Source0-md5:	3e84dbe18270e92d42a6eb5e6d0d9a8b
+Source0:	https://xorg.freedesktop.org/releases/individual/proto/xorgproto-%{ver}.tar.xz
+# Source0-md5:	3fdb11d75f7023db273f7b3e34b58338
 URL:		https://xorg.freedesktop.org/
 BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake
 BuildRequires:	docbook-dtd43-xml
 BuildRequires:	libxslt-progs
 BuildRequires:	python3 >= 1:3.6
+BuildRequires:	tar >= 1:1.22
 BuildRequires:	xmlto >= 0.0.22
 BuildRequires:	xorg-sgml-doctools >= 1.8
 BuildRequires:	xorg-util-util-macros >= 1.12
+BuildRequires:	xz
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -663,6 +666,24 @@ Proxy Management Protocol to oparty na ICE protokół pozwalający
 serwerom aplikacji lokalizować w prosty sposób dostępne dla nich
 usługi proxy.
 
+%package -n xorg-proto-xwaylandproto-devel
+Summary:	Xwayland extension headers
+Summary(pl.UTF-8):	Pliki nagłówkowe rozszerzenia Xwayland
+Version:	%{xwayland_ver}
+Group:		X11/Development/Libraries
+
+%description -n xorg-proto-xwaylandproto-devel
+Xwayland extension headers.
+
+The XWAYLAND extension allows clients to reliably identify whether an
+X server is Xwayland.
+
+%description -n xorg-proto-xwaylandproto-devel -l pl.UTF-8
+Pliki nagłówkowe rozszerzenia Xwayland.
+
+Rozszerzenie XWAYLAND pozwala klientom wiarygodnie określić, czy
+serwer X to Xwayland.
+
 %prep
 %setup -q -n xorgproto-%{ver}
 
@@ -1010,3 +1031,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/X11/PM/PM*.h
 %{_npkgconfigdir}/xproxymngproto.pc
 %endif
+
+%files -n xorg-proto-xwaylandproto-devel
+%defattr(644,root,root,755)
+%doc COPYING-xwaylandproto xwaylandproto.txt
+%{_includedir}/X11/extensions/xwaylandproto.h
+%{_npkgconfigdir}/xwaylandproto.pc
