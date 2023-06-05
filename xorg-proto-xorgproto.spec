@@ -1,7 +1,7 @@
 # NOTE: when updating spec, adjust particular proto versions!
 
 # whole package version
-%define	ver		2022.2
+%define	ver		2023.1
 # package release
 %define	rel		1
 # subpackage versions (see .pc files)
@@ -14,7 +14,7 @@
 %define	dri2_ver	2.8
 %define	dri3_ver	1.3
 %define	evie_ver	1.1.1
-%define	fixes_ver	6.0
+%define	fixes_ver	6.1
 %define	fontcache_ver	0.1.3
 %define	fonts_ver	2.1.3
 %define	gl_ver		1.4.17
@@ -57,7 +57,7 @@ Release:	%{ver}.%{rel}
 License:	MIT
 Group:		X11/Development/Libraries
 Source0:	https://xorg.freedesktop.org/releases/individual/proto/xorgproto-%{ver}.tar.xz
-# Source0-md5:	3fdb11d75f7023db273f7b3e34b58338
+# Source0-md5:	c1ba00071316114b7dac58a2aa9b81db
 URL:		https://xorg.freedesktop.org/
 BuildRequires:	autoconf >= 2.60
 BuildRequires:	automake
